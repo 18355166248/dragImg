@@ -1,0 +1,169 @@
+/**index.wxss**/
+
+/* 头部s */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 20px;
+  background-color: #cb0937;
+  color: #fff;
+}
+
+.header .header-left {
+  font-size: 38rpx;
+}
+
+.header .header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header .header-right .icon-yonghu {
+  font-size: 40rpx;
+}
+
+.header .header-right text {
+  font-size: 22rpx;
+  margin-left: 5rpx;
+}
+
+/* 头部e */
+
+/* kv s */
+
+.kv {
+  margin-top: 40rpx;
+}
+
+.kv .kv-t1 {
+  color: #fa364a;
+  font-size: 45rpx;
+}
+
+.kv .kv-t2 {
+  font-size: 36rpx;
+  margin: 20rpx 0 40rpx 0;
+}
+
+/* kv e */
+
+/* 轮播图 s */
+
+.swiper {
+  display: flex;
+  align-items: center;
+}
+
+.swiper .iconfont {
+  width: 139rpx;
+  text-align: center;
+  font-size: 40rpx;
+}
+
+.swiper swiper {
+  flex: 1;
+  height: 450rpx;
+}
+
+.swiper swiper .swiper-item {
+  position: absolute;
+  width: 380rpx;
+  height: 380rpx;
+  border: 14rpx solid #eee;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.swiper swiper .swiper-item cover-image {
+  position: absolute;
+}
+
+.swiper swiper .swiper-item cover-image:first-child {
+  width: 190rpx;
+  height: auto;
+  top: 235rpx;
+  left: 46rpx;
+}
+
+.swiper swiper .swiper-item cover-image:nth-child(2) {
+  width: 80rpx;
+  height: auto;
+  top: 210rpx;
+  left: 212rpx;
+}
+
+.swiper swiper .swiper-item cover-image:nth-child(3) {
+  width: 38rpx;
+  height: auto;
+  top: 149rpx;
+  left: 79rpx;
+}
+
+.swiper swiper .swiper-item cover-image:nth-child(4) {
+  width: 113rpx;
+  height: auto;
+  top: 22rpx;
+  left: 44rpx;
+}
+
+.swiper swiper .swiper-item cover-image:nth-child(5) {
+  width: 156rpx;
+  height: auto;
+  top: -24rpx;
+  left: 152rpx;
+}
+
+.swiper swiper .swiper-item cover-image:nth-child(6) {
+  width: 125rpx;
+  height: auto;
+  top: 108rpx;
+  left: 116rpx;
+}
+
+/* 轮播图 e */
+
+/* 提示 s */
+
+.notify {
+  position: relative;
+  display: block;
+  width: 750rpx;
+  height: 162rpx;
+  padding: 0 45rpx;
+  box-sizing: border-box;
+  margin-top: 80rpx;
+}
+
+.notify .box {
+  width: 100%;
+  height: 100%;
+  background-color: #fa364a;
+  color: #fff;
+  padding: 31rpx 0;
+}
+
+.notify .box::after {
+  content: '';
+  position: absolute;
+  width: 60rpx;
+  height: 50rpx;
+  transform: rotate(-80deg) skew(50deg);
+  left: 189rpx;
+  top: -18rpx;
+  z-index: 1;
+  background: #fa364a;
+}
+.notify .box view {
+  font-size: 28rpx;
+}
+.notify .box view:first-child {
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 15rpx;
+}
+
+/* 提示 e */

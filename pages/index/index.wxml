@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<view>
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-left">Seven</view>
+    <view class="header-right">
+      <view class="iconfont icon-yonghu"></view>
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击登陆</button>
+      <text>{{ userInfo.nickName }}</text>
+    </view>
+  </view>
+  <view class="kv ac">
+    <text class="kv-t1">自制「美肤特调」 赢新罗独家好礼</text>
+    <view class="kv-t2">My Clarins全新上线新罗免税店 </view>
+    <!-- <cover-image src="/assets/images/header/fv1.jpg" /> -->
+  </view>
+  <!-- 轮播图 -->
+  <view class="swiper">
+    <view class="iconfont icon-arrow-left"></view>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" circular="true" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+      <swiper-item>
+        <view class="swiper-item">
+          <cover-image src="/assets/images/pro1/pro_1_01.png" />
+          <cover-image src="/assets/images/pro1/pro_1_02.png" />
+          <cover-image src="/assets/images/pro1/pro_1_03.png" />
+          <cover-image src="/assets/images/pro1/pro_1_04.png" />
+          <cover-image src="/assets/images/pro1/pro_1_05.png" />
+          <cover-image src="/assets/images/pro1/pro_1_06.png" />
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class="iconfont icon-arrow-right"></view>
+  </view>
+  <!-- 提示 -->
+  <view class="notify">
+    <view class="box ac">
+      <view>提示</view>
+      <view>TA可以为肌肤补水、注入营养、抵御污染、</view>
+      <view>焕活和提亮肌肤哦</view>
+    </view>
+  </view>
+</view>
