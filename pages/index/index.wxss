@@ -50,6 +50,11 @@
 
 /* kv e */
 
+.move-area {
+  width: 100%;
+  height: auto;
+}
+
 /* 轮播图 s */
 
 .swiper {
@@ -78,46 +83,46 @@
   transform: translate(-50%, -50%);
 }
 
-.swiper swiper .swiper-item cover-image {
+.swiper swiper .swiper-item image {
   position: absolute;
 }
 
-.swiper swiper .swiper-item cover-image:first-child {
+.swiper swiper .swiper-item image:first-child {
   width: 190rpx;
   height: auto;
   top: 235rpx;
   left: 46rpx;
 }
 
-.swiper swiper .swiper-item cover-image:nth-child(2) {
+.swiper swiper .swiper-item image:nth-child(2) {
   width: 80rpx;
   height: auto;
   top: 210rpx;
   left: 212rpx;
 }
 
-.swiper swiper .swiper-item cover-image:nth-child(3) {
+.swiper swiper .swiper-item image:nth-child(3) {
   width: 38rpx;
   height: auto;
   top: 149rpx;
   left: 79rpx;
 }
 
-.swiper swiper .swiper-item cover-image:nth-child(4) {
+.swiper swiper .swiper-item image:nth-child(4) {
   width: 113rpx;
   height: auto;
   top: 22rpx;
   left: 44rpx;
 }
 
-.swiper swiper .swiper-item cover-image:nth-child(5) {
+.swiper swiper .swiper-item image:nth-child(5) {
   width: 156rpx;
   height: auto;
   top: -24rpx;
   left: 152rpx;
 }
 
-.swiper swiper .swiper-item cover-image:nth-child(6) {
+.swiper swiper .swiper-item image:nth-child(6) {
   width: 125rpx;
   height: auto;
   top: 108rpx;
@@ -132,7 +137,6 @@
   position: relative;
   display: block;
   width: 750rpx;
-  height: 162rpx;
   padding: 0 45rpx;
   box-sizing: border-box;
   margin-top: 80rpx;
@@ -157,9 +161,12 @@
   z-index: 1;
   background: #fa364a;
 }
+
 .notify .box view {
-  font-size: 28rpx;
+  font-size: 24rpx;
+  line-height: 34rpx;
 }
+
 .notify .box view:first-child {
   font-size: 34rpx;
   font-weight: 700;
@@ -167,3 +174,67 @@
 }
 
 /* 提示 e */
+
+/* 提示2 s */
+
+.notify-two {
+  color: #fa364a;
+  font-size: 27rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.notify-two text {
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 0 2rpx;
+  word-break: keep-all;
+}
+
+/* 提示2 e */
+
+/* 选择列表 s */
+
+.select-area {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30rpx 0;
+}
+
+.select-area  > .select-li {
+  text-align: center;
+  width: 25%;
+}
+.select-area  > .select-li > view:first-child {
+  position: relative;
+  width: 100%;
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-area  > .select-li > view > movable-view {
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+}
+.select-area  > .select-li  image {
+  position: absolute;
+  width: 115rpx;
+  height: 165rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.select-area  > .select-li > .txt {
+  font-size: 24rpx;
+  margin: 10px 0 5px 0;
+}
+
+.select-area  > .select-li > .txt2 {
+  font-size: 18rpx;
+}
+
+/* 选择列表 e */

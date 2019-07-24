@@ -15,28 +15,52 @@
     <!-- <cover-image src="/assets/images/header/fv1.jpg" /> -->
   </view>
   <!-- 轮播图 -->
-  <view class="swiper">
-    <view class="iconfont icon-arrow-left"></view>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" circular="true" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
-      <swiper-item>
-        <view class="swiper-item">
-          <cover-image src="/assets/images/pro1/pro_1_01.png" />
-          <cover-image src="/assets/images/pro1/pro_1_02.png" />
-          <cover-image src="/assets/images/pro1/pro_1_03.png" />
-          <cover-image src="/assets/images/pro1/pro_1_04.png" />
-          <cover-image src="/assets/images/pro1/pro_1_05.png" />
-          <cover-image src="/assets/images/pro1/pro_1_06.png" />
-        </view>
-      </swiper-item>
-    </swiper>
-    <view class="iconfont icon-arrow-right"></view>
-  </view>
-  <!-- 提示 -->
-  <view class="notify">
-    <view class="box ac">
-      <view>提示</view>
-      <view>TA可以为肌肤补水、注入营养、抵御污染、</view>
-      <view>焕活和提亮肌肤哦!</view>
+  <movable-area class="move-area">
+    <view class="swiper">
+      <view class="iconfont icon-arrow-left"></view>
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" circular="true" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+        <swiper-item>
+          <view class="swiper-item">
+            <image src="/assets/images/pro1/pro_1_01.png" id="swiper-item1" />
+            <image src="/assets/images/pro1/pro_1_02.png" />
+            <image src="/assets/images/pro1/pro_1_03.png" />
+            <image src="/assets/images/pro1/pro_1_04.png" />
+            <image src="/assets/images/pro1/pro_1_05.png" />
+            <image src="/assets/images/pro1/pro_1_06.png" />
+          </view>
+        </swiper-item>
+      </swiper>
+      <view class="iconfont icon-arrow-right"></view>
     </view>
-  </view>
+    <!-- 提示 -->
+    <view class="notify">
+      <view class="box ac">
+        <view>提示</view>
+        <view>TA可以为肌肤补水、注入营养、抵御污染、</view>
+        <view>焕活和提亮肌肤哦!</view>
+      </view>
+      <view class="notify-two">
+        挑选3-5种植物和水果
+        <text>拖至上方</text>阴影里，开始调制吧！
+      </view>
+
+      <!-- 选择列表 -->
+      <view class="select-area">
+        <view class="select-li" wx:for="{{selectList}}" wx:key="index">
+          <view>
+            <view>
+              <image src="{{item.url}}"></image>
+            </view>
+            <movable-view x="{{item.x}}" y="{{item.y}}" direction="all" data-index="{{index}}" catchtouchend="touchEnd">
+              <image src="{{item.url}}"></image>
+            </movable-view>
+          </view>
+          <view class="txt">{{item.txt}}</view>
+          <view class="txt2">{{item.txt2}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- <movable-view x="{{x}}" y="{{y}}" direction="all">text</movable-view> -->
+  </movable-area>
 </view>
