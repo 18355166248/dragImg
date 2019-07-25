@@ -15,67 +15,66 @@ Page({
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
+    show1: true,
     areaList1: [{
-      url: '/assets/images/pro1/pro_1_01'
+      url: '/assets/images/pro1/pro_1_01',
+      id: 0
     }, {
-      url: '/assets/images/pro1/pro_1_02'
+      url: '/assets/images/pro1/pro_1_02',
+      id: 2
     }, {
-      url: '/assets/images/pro1/pro_1_03'
+      url: '/assets/images/pro1/pro_1_03',
+      id: 4
     }, {
-      url: '/assets/images/pro1/pro_1_04'
+      url: '/assets/images/pro1/pro_1_04',
+      id: 5
     }, {
-      url: '/assets/images/pro1/pro_1_05'
+      url: '/assets/images/pro1/pro_1_05',
+      id: 1
     }, {
-      url: '/assets/images/pro1/pro_1_06'
+      url: '/assets/images/pro1/pro_1_06',
+      id: 10
     }],
     selectList: [{
       url: '/assets/images/prolist/pic1.png',
       txt: '有机椰汁水',
       txt2: '为肌肤提供营养',
-      x: 0,
-      y: 0
+      show: true
     }, {
       url: '/assets/images/prolist/pic2.png',
       txt: '阿尔卑斯玫瑰',
       txt2: '排除毒素与污染物',
-      x: 0,
-      y: 0
+      show: true
     }, {
       url: '/assets/images/prolist/pic3.png',
       txt: '针叶樱桃',
       txt2: '富含维生素C,提亮肤色',
-      x: 0,
-      y: 0
+      show: true
     }, {
       url: '/assets/images/prolist/pic4.png',
       txt: '有机苦橙花',
       txt2: '柔嫩肌肤',
-      x: 0,
-      y: 0
+      show: true
     }, {
       url: '/assets/images/prolist/pic5.png',
       txt: '有机枸杞子',
       txt2: '提供能量',
-      x: 0,
-      y: 0
+      show: true
     }, {
       url: '/assets/images/prolist/pic6.png',
       txt: '有机无花果',
       txt2: '补水保湿',
-      x: 0,
-      y: 0
+      show: true
     }, {
       url: '/assets/images/prolist/pic7.png',
       txt: '有机绣线菊',
       txt2: '净化肌肤',
-      x: 0,
-      y: 0
+      show: true
     }, {
       url: '/assets/images/prolist/pic8.png',
       txt: '辣木',
       txt2: '温和去除彩妆与污染物',
-      x: 0,
-      y: 0
+      show: true
     }]
   },
   onLoad: function() {
@@ -115,40 +114,47 @@ Page({
     })
   },
   touchEnd(event) {
-    var index = event.currentTarget.dataset.index
-    const bool = true
+    const index = event.currentTarget.dataset.index
+    var bool = true
+    let val = this.data.selectList[index]
+    const selectList = this.data.selectList
     this._observer = wx.createIntersectionObserver(this)
     this._observer
       .relativeTo('#movable' + index)
-      .observe('#swiper-item' + index, (res) => {
+      .observe('.swiper-item' + index, res => {
         if (res.intersectionRatio > 0.5) {
-          console.log('进入')
-        } else {
-          console.log('没进入')
-          bool = false
+          let areaList1 = this.data.areaList1
+          const areaIndex = areaList1.findIndex(v => index === v.id)
+          if (!areaList1[areaIndex].show) {
+            if (areaIndex || areaIndex === 0) {
+              (areaList1[areaIndex].show = true)
+            }
+            val.show = false
+            selectList[index] = val
+            this.setData({
+              selectList,
+              areaList1
+            })
+          }
         }
       })
     setTimeout(() => {
-      if (!bool) {
-        var val = this.data.selectList[index]
-        var selectList = this.data.selectList
+      if (bool) {
         val.x = 0
         val.y = 0
+        val.show = true
         selectList[index] = val
         this.setData({
           selectList
         })
       }
-      console.log('结束')
+      let num = 0
+      this.data.areaList1.forEach(v => {
+        if (v.show) num++
+      })
+      if (num === 5) this.setData({
+        show1: false
+      })
     }, 100)
-    // wx.createIntersectionObserver(this, {}).relativeTo('#movable' + index).relativeToViewport().observe('#swiper-item' + index, (res) => {
-    //   if (res.intersectionRatio > 0.5) {
-    //     console.log('进入')
-    //   } else {
-    //     console.log('没进入')
-
-
-    //   }
-    // })
   }
 })

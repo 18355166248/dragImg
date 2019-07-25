@@ -20,12 +20,13 @@
       <view class="iconfont icon-arrow-left"></view>
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" circular="true" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
         <swiper-item>
-          <view class="swiper-item">
+          <view class="swiper-item" wx:if="{{show1}}">
             <view class="image" wx:for="{{areaList1}}" wx:key="{{index}}">
-              <image mode="widthFix" src="{{item.url}}.png" id="swiper-item{{index}}" />
-              <image mode="widthFix" src="{{item.url}}_ac.png" wx:if="{{item.show}}" />
+              <image mode="widthFix" src="{{item.url}}.png" class="swiper-item{{item.id}}" />
+              <image mode="widthFix" src="{{item.url}}_ac.png" class="{{item.show ? 'active' : ''}}" />
             </view>
           </view>
+          <image class="fullImage {{!show1 ? 'active' : ''}}" mode="widthFix" src="/assets/images/pro1/pro_1_suc.jpg" />
         </swiper-item>
       </swiper>
       <view class="iconfont icon-arrow-right"></view>
@@ -49,7 +50,7 @@
             <view>
               <image src="{{item.url}}"></image>
             </view>
-            <movable-view id="movable{{index}}" x="{{item.x}}" y="{{item.y}}" direction="all" data-index="{{index}}" catchtouchend="touchEnd">
+            <movable-view id="movable{{index}}" x="{{item.x}}" y="{{item.y}}" direction="all" wx:if="{{item.show}}" data-index="{{index}}" catchtouchend="touchEnd">
               <image src="{{item.url}}"></image>
             </movable-view>
           </view>

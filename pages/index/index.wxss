@@ -20,7 +20,7 @@
   padding: 0 20rpx;
   background-color: #cb0937;
   color: #fff;
-  margin-left: 10rpx;
+  padding-left: 10rpx;
 }
 
 .header .header-left {
@@ -94,6 +94,18 @@
   transform: translate(-50%, -50%);
 }
 
+.swiper swiper .fullImage {
+  width: 100%;
+  opacity: 0;
+  transition: opacity .5s ease;
+  position: absolute;
+  z-index: 10;
+}
+
+.swiper swiper .fullImage.active {
+  opacity: 1;
+}
+
 .swiper swiper .swiper-item .image {
   position: absolute;
 }
@@ -103,6 +115,15 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.swiper swiper .swiper-item .image > image:last-child {
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.swiper swiper .swiper-item .image > image:last-child.active {
+  opacity: 1;
 }
 
 .swiper swiper .swiper-item .image:first-child {
