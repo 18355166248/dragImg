@@ -5,8 +5,8 @@
     <view class="header-left">Seven</view>
     <view class="header-right">
       <view class="iconfont icon-yonghu"></view>
-      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">点击登陆</button>
-      <text>{{ userInfo.nickName }}</text>
+      <button wx:if="{{!hasUserInfo && canIUse}}" plain="{{true}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="login">点击登陆</button>
+      <text wx:else>{{ userInfo.nickName }}</text>
     </view>
   </view>
   <view class="kv ac">
@@ -21,12 +21,10 @@
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" circular="true" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
         <swiper-item>
           <view class="swiper-item">
-            <image src="/assets/images/pro1/pro_1_01.png" id="swiper-item1" />
-            <image src="/assets/images/pro1/pro_1_02.png" />
-            <image src="/assets/images/pro1/pro_1_03.png" />
-            <image src="/assets/images/pro1/pro_1_04.png" />
-            <image src="/assets/images/pro1/pro_1_05.png" />
-            <image src="/assets/images/pro1/pro_1_06.png" />
+            <view class="image" wx:for="{{areaList1}}" wx:key="{{index}}">
+              <image mode="widthFix" src="{{item.url}}.png" id="swiper-item{{index}}" />
+              <image mode="widthFix" src="{{item.url}}_ac.png" wx:if="{{item.show}}" />
+            </view>
           </view>
         </swiper-item>
       </swiper>
@@ -51,7 +49,7 @@
             <view>
               <image src="{{item.url}}"></image>
             </view>
-            <movable-view x="{{item.x}}" y="{{item.y}}" direction="all" data-index="{{index}}" catchtouchend="touchEnd">
+            <movable-view id="movable{{index}}" x="{{item.x}}" y="{{item.y}}" direction="all" data-index="{{index}}" catchtouchend="touchEnd">
               <image src="{{item.url}}"></image>
             </movable-view>
           </view>

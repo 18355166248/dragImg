@@ -7,7 +7,6 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
     indicatorDots: false,
     vertical: false,
     autoplay: false,
@@ -16,18 +15,25 @@ Page({
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
-    x: 0,
-    y: 0,
+    areaList1: [{
+      url: '/assets/images/pro1/pro_1_01'
+    }, {
+      url: '/assets/images/pro1/pro_1_02'
+    }, {
+      url: '/assets/images/pro1/pro_1_03'
+    }, {
+      url: '/assets/images/pro1/pro_1_04'
+    }, {
+      url: '/assets/images/pro1/pro_1_05'
+    }, {
+      url: '/assets/images/pro1/pro_1_06'
+    }],
     selectList: [{
       url: '/assets/images/prolist/pic1.png',
       txt: '有机椰汁水',
       txt2: '为肌肤提供营养',
       x: 0,
-      y: 0,
-      x1: 157,
-      x2: 207,
-      y1: 317,
-      y2: 377
+      y: 0
     }, {
       url: '/assets/images/prolist/pic2.png',
       txt: '阿尔卑斯玫瑰',
@@ -82,7 +88,6 @@ Page({
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        console.log(res)
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
@@ -110,31 +115,40 @@ Page({
     })
   },
   touchEnd(event) {
-    var val = this.data.selectList[event.currentTarget.dataset.index]
-    var x = event.changedTouches[0].clientX
-    var y = event.changedTouches[0].clientY
-    if (val.x1 < x && x < val.x2 && val.y1 < y && y < val.y2) {
-      console.log(event.target)
-    } else {
-      var selectList = this.data.selectList
-      val.x = 0
-      val.y = 0
-      selectList[event.currentTarget.dataset.index] = val
-      this.setData({
-        selectList
+    var index = event.currentTarget.dataset.index
+    const bool = true
+    this._observer = wx.createIntersectionObserver(this)
+    this._observer
+      .relativeTo('#movable' + index)
+      .observe('#swiper-item' + index, (res) => {
+        if (res.intersectionRatio > 0.5) {
+          console.log('进入')
+        } else {
+          console.log('没进入')
+          bool = false
+        }
       })
-    }
-    wx.createIntersectionObserver().relativeToViewport().observe('#swiper-item1', (res) => {
-      console.log(res)
-      res.id // 目标节点 id
-      res.dataset // 目标节点 dataset
-      res.intersectionRatio // 相交区域占目标节点的布局区域的比例
-      res.intersectionRect // 相交区域
-      res.intersectionRect.left // 相交区域的左边界坐标
-      res.intersectionRect.top // 相交区域的上边界坐标
-      res.intersectionRect.width // 相交区域的宽度
-      res.intersectionRect.height // 相交区域的高度
-    })
-    console.log('结束')
+    setTimeout(() => {
+      if (!bool) {
+        var val = this.data.selectList[index]
+        var selectList = this.data.selectList
+        val.x = 0
+        val.y = 0
+        selectList[index] = val
+        this.setData({
+          selectList
+        })
+      }
+      console.log('结束')
+    }, 100)
+    // wx.createIntersectionObserver(this, {}).relativeTo('#movable' + index).relativeToViewport().observe('#swiper-item' + index, (res) => {
+    //   if (res.intersectionRatio > 0.5) {
+    //     console.log('进入')
+    //   } else {
+    //     console.log('没进入')
+
+
+    //   }
+    // })
   }
 })
