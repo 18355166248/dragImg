@@ -17,19 +17,19 @@
   <!-- 轮播图 -->
   <movable-area class="move-area">
     <view class="swiper">
-      <view class="iconfont icon-arrow-left"></view>
-      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" circular="true" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
-        <swiper-item>
-          <view class="swiper-item" wx:if="{{show1}}">
-            <view class="image" wx:for="{{areaList1}}" wx:key="{{index}}">
+      <view class="iconfont icon-arrow-left" data-current="left" bindtap="changeCurrent"></view>
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}" circular="true" interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px" bindchange="bindchange" current="{{current}}">
+        <swiper-item wx:for="{{swiperList}}" wx:key="{{allIndex}}" wx:for-index="allIndex" wx:for-item="allItem">
+          <view class="swiper-item swiper-box{{allIndex}}" wx:if="{{!allItem.show}}">
+            <view class="image" wx:for="{{allItem.list}}" wx:for-index="index" wx:key="{{index}}">
               <image mode="widthFix" src="{{item.url}}.png" class="swiper-item{{item.id}}" />
               <image mode="widthFix" src="{{item.url}}_ac.png" class="{{item.show ? 'active' : ''}}" />
             </view>
           </view>
-          <image class="fullImage {{!show1 ? 'active' : ''}}" mode="widthFix" src="/assets/images/pro1/pro_1_suc.jpg" />
+          <image class="fullImage {{allItem.show ? 'active' : ''}}" mode="widthFix" src="{{allItem.fullImage}}" />
         </swiper-item>
       </swiper>
-      <view class="iconfont icon-arrow-right"></view>
+      <view class="iconfont icon-arrow-right" data-current="right" bindtap="changeCurrent"></view>
     </view>
     <!-- 提示 -->
     <view class="notify">

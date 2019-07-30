@@ -1,5 +1,9 @@
 /**index.wxss**/
 
+page {
+  height: 100%;
+}
+
 .login {
   border: none !important;
   font-size: 24rpx;
@@ -46,7 +50,7 @@
 /* kv s */
 
 .kv {
-  margin-top: 40rpx;
+  margin: 40rpx 0 60rpx 0;
 }
 
 .kv .kv-t1 {
@@ -86,6 +90,7 @@
 
 .swiper swiper .swiper-item {
   position: absolute;
+  z-index: 2;
   width: 380rpx;
   height: 380rpx;
   border: 14rpx solid #eee;
@@ -97,9 +102,9 @@
 .swiper swiper .fullImage {
   width: 100%;
   opacity: 0;
-  transition: opacity .5s ease;
+  transition: opacity 1s ease;
   position: absolute;
-  z-index: 10;
+  /* z-index: 10; */
 }
 
 .swiper swiper .fullImage.active {
@@ -119,53 +124,81 @@
 
 .swiper swiper .swiper-item .image > image:last-child {
   opacity: 0;
-  transition: opacity .5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .swiper swiper .swiper-item .image > image:last-child.active {
   opacity: 1;
 }
 
-.swiper swiper .swiper-item .image:first-child {
+.swiper swiper .swiper-box0 .image:first-child {
   width: 190rpx;
   height: auto;
   top: 235rpx;
   left: 46rpx;
 }
 
-.swiper swiper .swiper-item .image:nth-child(2) {
+.swiper swiper .swiper-box0 .image:nth-child(2) {
   width: 80rpx;
   height: auto;
   top: 210rpx;
   left: 212rpx;
 }
 
-.swiper swiper .swiper-item .image:nth-child(3) {
+.swiper swiper .swiper-box0 .image:nth-child(3) {
   width: 38rpx;
   height: auto;
   top: 149rpx;
   left: 79rpx;
 }
 
-.swiper swiper .swiper-item .image:nth-child(4) {
+.swiper swiper .swiper-box0 .image:nth-child(4) {
   width: 113rpx;
   height: auto;
   top: 22rpx;
   left: 44rpx;
 }
 
-.swiper swiper .swiper-item .image:nth-child(5) {
+.swiper swiper .swiper-box0 .image:nth-child(5) {
   width: 156rpx;
   height: auto;
   top: -24rpx;
   left: 152rpx;
 }
 
-.swiper swiper .swiper-item .image:nth-child(6) {
+.swiper swiper .swiper-box0 .image:nth-child(6) {
   width: 125rpx;
   height: auto;
   top: 108rpx;
   left: 116rpx;
+}
+
+.swiper swiper .swiper-box1 .image:nth-child(1) {
+  width: 60rpx;
+  height: auto;
+  top: 260rpx;
+  left: 124rpx;
+}
+
+.swiper swiper .swiper-box1 .image:nth-child(2) {
+  width: 203rpx;
+  height: auto;
+  top: -50rpx;
+  left: 134rpx;
+}
+
+.swiper swiper .swiper-box1 .image:nth-child(3) {
+  width: 119rpx;
+  height: auto;
+  top: 20rpx;
+  left: 70rpx;
+}
+
+.swiper swiper .swiper-box1 .image:nth-child(4) {
+  width: 116rpx;
+  height: auto;
+  top: 92rpx;
+  left: 134rpx;
 }
 
 /* 轮播图 e */
@@ -176,7 +209,7 @@
   position: relative;
   display: block;
   width: 750rpx;
-  padding: 0 45rpx;
+  padding: 0 30rpx;
   box-sizing: border-box;
   margin-top: 80rpx;
 }
@@ -202,7 +235,7 @@
 }
 
 .notify .box view {
-  font-size: 24rpx;
+  font-size: 22rpx;
   line-height: 34rpx;
 }
 
@@ -218,7 +251,7 @@
 
 .notify-two {
   color: #fa364a;
-  font-size: 27rpx;
+  font-size: 25rpx;
   text-align: center;
   margin-top: 30rpx;
 }
@@ -226,7 +259,6 @@
 .notify-two text {
   font-size: 34rpx;
   font-weight: bold;
-  padding: 0 2rpx;
   word-break: keep-all;
 }
 

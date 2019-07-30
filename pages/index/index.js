@@ -15,25 +15,45 @@ Page({
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
-    show1: true,
-    areaList1: [{
-      url: '/assets/images/pro1/pro_1_01',
-      id: 0
+    current: 0,
+    swiperList: [{
+      show: false,
+      fullImage: '/assets/images/pro1/pro_1_suc.jpg',
+      list: [{
+        url: '/assets/images/pro1/pro_1_01',
+        id: 0
+      }, {
+        url: '/assets/images/pro1/pro_1_02',
+        id: 2
+      }, {
+        url: '/assets/images/pro1/pro_1_03',
+        id: 4
+      }, {
+        url: '/assets/images/pro1/pro_1_04',
+        id: 5
+      }, {
+        url: '/assets/images/pro1/pro_1_05',
+        id: 1
+      }, {
+        url: '/assets/images/pro1/pro_1_06',
+        id: 10
+      }]
     }, {
-      url: '/assets/images/pro1/pro_1_02',
-      id: 2
-    }, {
-      url: '/assets/images/pro1/pro_1_03',
-      id: 4
-    }, {
-      url: '/assets/images/pro1/pro_1_04',
-      id: 5
-    }, {
-      url: '/assets/images/pro1/pro_1_05',
-      id: 1
-    }, {
-      url: '/assets/images/pro1/pro_1_06',
-      id: 10
+      show: false,
+      fullImage: '/assets/images/pro2/pro_2_suc.jpg',
+      list: [{
+        url: '/assets/images/pro2/pro_2_01',
+        id: 7
+      }, {
+        url: '/assets/images/pro2/pro_2_02',
+        id: 6
+      }, {
+        url: '/assets/images/pro2/pro_2_03',
+        id: 3
+      }, {
+        url: '/assets/images/pro2/pro_2_04',
+        id: 11
+      }]
     }],
     selectList: [{
       url: '/assets/images/prolist/pic1.png',
@@ -113,27 +133,33 @@ Page({
       hasUserInfo: true
     })
   },
+  bindchange(event) {
+    this.setData({
+      current: event.detail.current
+    })
+  },
   touchEnd(event) {
     const index = event.currentTarget.dataset.index
     var bool = true
     let val = this.data.selectList[index]
     const selectList = this.data.selectList
+    let swiperList = this.data.swiperList
+    let areaList = swiperList[this.data.current].list
     this._observer = wx.createIntersectionObserver(this)
     this._observer
       .relativeTo('#movable' + index)
       .observe('.swiper-item' + index, res => {
         if (res.intersectionRatio > 0.5) {
-          let areaList1 = this.data.areaList1
-          const areaIndex = areaList1.findIndex(v => index === v.id)
-          if (!areaList1[areaIndex].show) {
+          const areaIndex = areaList.findIndex(v => index === v.id)
+          if (!areaList[areaIndex].show) {
             if (areaIndex || areaIndex === 0) {
-              (areaList1[areaIndex].show = true)
+              (areaList[areaIndex].show = true)
             }
             val.show = false
             selectList[index] = val
             this.setData({
               selectList,
-              areaList1
+              swiperList
             })
           }
         }
@@ -149,12 +175,29 @@ Page({
         })
       }
       let num = 0
-      this.data.areaList1.forEach(v => {
+      areaList.forEach(v => {
         if (v.show) num++
       })
-      if (num === 5) this.setData({
-        show1: false
-      })
+      if (num === (areaList.length - 1)) {
+        swiperList[this.data.current].show = true
+        this.setData({
+          swiperList
+        })
+      }
     }, 100)
+  },
+  changeCurrent(event) {
+    let current = 0
+    const length = this.data.swiperList.length
+    if (event.currentTarget.dataset.current === 'left') {
+      current = this.data.current - 1
+      current === -1 && (current = length - 1)
+    } else {
+      current = this.data.current + 1
+      current > (length - 1) && (current = 0)
+    }
+    this.setData({
+      current
+    })
   }
 })
